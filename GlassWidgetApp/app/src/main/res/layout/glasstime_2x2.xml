@@ -1,0 +1,11 @@
+<!-- v0.20 «Стеклянное время» 2×2. tag PA (v0.30): при квадрате — часы над минутами, растянутый в ширину — в строку. Каждая цифра — отдельное view со своим жидким стеклом
+     (GlassDigitsClock): HWUI держит стекло по содержимому, только пока левый край view на экране. -->
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/glasstime2_root"
+    android:layout_width="match_parent" android:layout_height="match_parent">
+
+    <com.artemiy.glasstest.GlassDigitsClock
+        android:id="@+id/glasstime2_text"
+        android:layout_width="match_parent" android:layout_height="match_parent"
+        android:tag="PA"/>
+</FrameLayout>

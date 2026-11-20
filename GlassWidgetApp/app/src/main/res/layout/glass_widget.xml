@@ -1,0 +1,16 @@
+<!-- v0.9: как у папок лаунчера — стекло на отдельном слое GlassBgView (tag="auto": сам ставит материал
+     в хосте), текст лежит НАД ним соседом и рисуется обычным образом. -->
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/root"
+    android:layout_width="match_parent" android:layout_height="match_parent">
+    <com.artemiy.glasstest.GlassBgView
+        android:id="@+id/glass"
+        android:layout_width="match_parent" android:layout_height="match_parent"
+        android:background="@drawable/glass_bg_none"
+        android:tag="auto"/>
+    <TextView android:id="@+id/label"
+        android:layout_width="wrap_content" android:layout_height="wrap_content"
+        android:layout_gravity="center" android:text="Glass"
+        android:textColor="#FFFFFF" android:textSize="22sp"
+        android:shadowColor="#55000000" android:shadowRadius="6"/>
+</FrameLayout>

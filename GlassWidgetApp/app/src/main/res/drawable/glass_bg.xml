@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- v0.5: фон-подложка для стекла. Как у календаря vivo (blur_lightmode_black_background:
+     два слоя #6E000000 + #2C000000), плюс скругление — на рабочем столе лаунчер сам не обрезает углы.
+     Материал (setMaterial) берёт форму стекла из того, что рисует view: без фона стеклом становился текст. -->
+<layer-list xmlns:android="http://schemas.android.com/apk/res/android">
+    <item>
+        <shape android:shape="rectangle">
+            <corners android:radius="24dp"/>
+            <solid android:color="#6E000000"/>
+        </shape>
+    </item>
+    <item>
+        <shape android:shape="rectangle">
+            <corners android:radius="24dp"/>
+            <solid android:color="#2C000000"/>
+        </shape>
+    </item>
+</layer-list>

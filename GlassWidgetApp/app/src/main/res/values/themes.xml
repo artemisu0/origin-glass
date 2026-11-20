@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!-- v0.23: приложение — панель снизу ПОВЕРХ рабочего стола: окно прозрачное, лаунчер с часами виден и рисует
+         живое стекло, смена стиля видна сразу. -->
+    <style name="GlassPanel" parent="@android:style/Theme.DeviceDefault.NoActionBar">
+        <item name="android:windowIsTranslucent">true</item>
+        <item name="android:windowBackground">@android:color/transparent</item>
+        <item name="android:backgroundDimEnabled">false</item>
+        <item name="android:windowNoTitle">true</item>
+    </style>
+</resources>

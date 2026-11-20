@@ -1,0 +1,132 @@
+<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <!-- Разрешение лаунчера vivo для Origin-виджетов (protection = normal) -->
+    <uses-permission android:name="com.bbk.launcher2.permission.WIDGET_SERVER"/>
+    <!-- v0.23: панель стиля стекла часов — плавающее окно поверх рабочего стола (PanelOverlay) -->
+    <uses-permission android:name="android.permission.SYSTEM_ALERT_WINDOW"/>
+
+    <!-- v0.7: пакет com.vivo.widget.widgetsdk_inner_demo (applicationId в build.gradle.kts) —
+         демо-имя SDK vivo из белых списков «живых» виджетов лаунчера и Jovi: хост грузит наш код view. -->
+    <application
+        android:label="Glass Origin"
+        android:icon="@android:drawable/ic_dialog_info"
+        android:allowBackup="false">
+
+        <!-- Простая активити: запуск выводит приложение из stopped-состояния -->
+        <activity android:name=".MainActivity" android:exported="true" android:theme="@style/GlassPanel">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN"/>
+                <category android:name="android.intent.category.LAUNCHER"/>
+            </intent-filter>
+        </activity>
+
+        <!-- v0.29: свой шрифт часов — системный выбор файла TTF/OTF -->
+        <activity android:name=".FontPickActivity" android:exported="false" android:theme="@style/GlassPanel"
+            android:excludeFromRecents="true"/>
+
+        <!-- v0.29: файлы шрифтов для лаунчера/Jovi (цифры рисуются в их процессе, файлы приложения им недоступны) -->
+        <provider android:name=".FontProvider"
+            android:authorities="com.vivo.widget.widgetsdk_inner_demo.fonts"
+            android:exported="true"/>
+
+        <!-- v0.9 «Glass»: слой GlassBgView сам ставит стекло в хосте (лаунчер: CHILD + ct 2; Jovi: ct 1) -->
+        <receiver android:name=".GlassMaterialWidget" android:exported="true" android:label="Glass">
+            <intent-filter>
+                <action android:name="android.appwidget.action.APPWIDGET_UPDATE"/>
+            </intent-filter>
+            <meta-data android:name="android.appwidget.provider" android:resource="@xml/glass_widget_info"/>
+            <meta-data android:name="com.vivo.widget_type" android:value="origin_widget"/>
+            <meta-data android:name="com.vivo.widget_ui_version" android:value="2.0"/>
+            <meta-data android:name="com.vivo.launcher.widget.adapter_feature" android:value="1"/>
+            <meta-data android:name="com.vivo.widget.running.version" android:value="1"/>
+            <meta-data android:name="com.vivo.widget.show.title" android:value="1"/>
+            <meta-data android:name="vivo.support.motionblur.widget" android:value="true"/>
+        </receiver>
+
+        <!-- v0.6–0.7: Glass lab — подбор стиля стекла кнопками прямо на виджете -->
+        <receiver android:name=".GlassLabWidget" android:exported="true" android:label="Glass lab">
+            <intent-filter>
+                <action android:name="android.appwidget.action.APPWIDGET_UPDATE"/>
+            </intent-filter>
+            <meta-data android:name="android.appwidget.provider" android:resource="@xml/lab_widget_info"/>
+            <meta-data android:name="com.vivo.widget_type" android:value="origin_widget"/>
+            <meta-data android:name="com.vivo.widget_ui_version" android:value="2.0"/>
+            <meta-data android:name="com.vivo.launcher.widget.adapter_feature" android:value="1"/>
+            <meta-data android:name="com.vivo.widget.running.version" android:value="1"/>
+            <meta-data android:name="com.vivo.widget.show.title" android:value="1"/>
+            <meta-data android:name="vivo.support.motionblur.widget" android:value="true"/>
+        </receiver>
+        <!-- v0.16 «Стеклянные часы» 2×2 на жидком стекле -->
+        <receiver android:name=".GlassClockWidget" android:exported="true" android:label="Стеклянные часы">
+            <intent-filter>
+                <action android:name="android.appwidget.action.APPWIDGET_UPDATE"/>
+            </intent-filter>
+            <meta-data android:name="android.appwidget.provider" android:resource="@xml/clock_2x2_info"/>
+            <meta-data android:name="com.vivo.widget_type" android:value="origin_widget"/>
+            <meta-data android:name="com.vivo.widget_ui_version" android:value="2.0"/>
+            <meta-data android:name="com.vivo.launcher.widget.adapter_feature" android:value="1"/>
+            <meta-data android:name="com.vivo.widget.running.version" android:value="1"/>
+            <meta-data android:name="com.vivo.widget.show.title" android:value="1"/>
+            <meta-data android:name="vivo.support.motionblur.widget" android:value="true"/>
+        </receiver>
+        <!-- v0.16 «Стеклянные часы» 4×2 на жидком стекле -->
+        <receiver android:name=".GlassClockWideWidget" android:exported="true" android:label="Стеклянные часы 4×2">
+            <intent-filter>
+                <action android:name="android.appwidget.action.APPWIDGET_UPDATE"/>
+            </intent-filter>
+            <meta-data android:name="android.appwidget.provider" android:resource="@xml/clock_4x2_info"/>
+            <meta-data android:name="com.vivo.widget_type" android:value="origin_widget"/>
+            <meta-data android:name="com.vivo.widget_ui_version" android:value="2.0"/>
+            <meta-data android:name="com.vivo.launcher.widget.adapter_feature" android:value="1"/>
+            <meta-data android:name="com.vivo.widget.running.version" android:value="1"/>
+            <meta-data android:name="com.vivo.widget.show.title" android:value="1"/>
+            <meta-data android:name="vivo.support.motionblur.widget" android:value="true"/>
+        </receiver>
+        <!-- v0.19 «Стеклянное время» 4×2: сами цифры — жидкое стекло, без фона -->
+        <receiver android:name=".GlassTimeWideWidget" android:exported="true" android:label="Стеклянное время 4×2">
+            <intent-filter>
+                <action android:name="android.appwidget.action.APPWIDGET_UPDATE"/>
+            </intent-filter>
+            <meta-data android:name="android.appwidget.provider" android:resource="@xml/glasstime_4x2_info"/>
+            <meta-data android:name="com.vivo.widget_type" android:value="origin_widget"/>
+            <meta-data android:name="com.vivo.widget_ui_version" android:value="2.0"/>
+            <meta-data android:name="com.vivo.launcher.widget.adapter_feature" android:value="1"/>
+            <meta-data android:name="com.vivo.widget.running.version" android:value="1"/>
+            <meta-data android:name="com.vivo.widget.show.title" android:value="1"/>
+            <meta-data android:name="vivo.support.motionblur.widget" android:value="true"/>
+        </receiver>
+        <!-- v0.19 «Стеклянное время» 2×2: сами цифры — жидкое стекло, без фона -->
+        <receiver android:name=".GlassTimeWidget" android:exported="true" android:label="Стеклянное время">
+            <intent-filter>
+                <action android:name="android.appwidget.action.APPWIDGET_UPDATE"/>
+            </intent-filter>
+            <meta-data android:name="android.appwidget.provider" android:resource="@xml/glasstime_2x2_info"/>
+            <meta-data android:name="com.vivo.widget_type" android:value="origin_widget"/>
+            <meta-data android:name="com.vivo.widget_ui_version" android:value="2.0"/>
+            <meta-data android:name="com.vivo.launcher.widget.adapter_feature" android:value="1"/>
+            <meta-data android:name="com.vivo.widget.running.version" android:value="1"/>
+            <meta-data android:name="com.vivo.widget.show.title" android:value="1"/>
+            <meta-data android:name="vivo.support.motionblur.widget" android:value="true"/>
+        </receiver>
+        <!-- v0.30 «Стеклянное время» 4×3: крупнее; часы сами выбирают 1 или 2 строки -->
+        <receiver android:name=".GlassTimeBigWidget" android:exported="true" android:label="Стеклянное время 4×3">
+            <intent-filter>
+                <action android:name="android.appwidget.action.APPWIDGET_UPDATE"/>
+            </intent-filter>
+            <meta-data android:name="android.appwidget.provider" android:resource="@xml/glasstime_4x3_info"/>
+            <meta-data android:name="com.vivo.widget_type" android:value="origin_widget"/>
+            <meta-data android:name="com.vivo.widget_ui_version" android:value="2.0"/>
+            <meta-data android:name="com.vivo.launcher.widget.adapter_feature" android:value="1"/>
+            <meta-data android:name="com.vivo.widget.running.version" android:value="1"/>
+            <meta-data android:name="com.vivo.widget.show.title" android:value="1"/>
+            <meta-data android:name="vivo.support.motionblur.widget" android:value="true"/>
+        </receiver>
+        <!-- v0.8: диагностика — отчёты GlassRootView из процесса хоста (logcat тег GlassDiag) -->
+        <receiver android:name=".DiagReceiver" android:exported="true">
+            <intent-filter>
+                <action android:name="com.artemiy.glasstest.DIAG"/>
+            </intent-filter>
+        </receiver>
+    </application>
+</manifest>

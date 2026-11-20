@@ -1,0 +1,13 @@
+# сборка и кэши Gradle / Kotlin
+GlassWidgetApp/.gradle/
+GlassWidgetApp/.kotlin/
+GlassWidgetApp/build/
+GlassWidgetApp/app/build/
+# путь к Android SDK на конкретном компьютере
+GlassWidgetApp/local.properties
+# личные заметки — не для репозитория
+CHAT.md
+# готовые APK и файлы IDE
+*.apk
+.idea/
+*.iml

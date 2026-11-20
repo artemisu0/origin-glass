@@ -1,0 +1,27 @@
+<!-- v0.9 Glass lab: стекло на отдельном слое lab_glass (GlassBgView без tag: материал задают кнопки
+     через RemoteViews, сам view только встаёт в batch лаунчера). Текст и кнопки — НАД слоем. -->
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/lab_root"
+    android:layout_width="match_parent" android:layout_height="match_parent">
+    <com.artemiy.glasstest.GlassBgView
+        android:id="@+id/lab_glass"
+        android:layout_width="match_parent" android:layout_height="match_parent"
+        android:background="@drawable/lab_bg_light"/>
+    <LinearLayout
+        android:layout_width="match_parent" android:layout_height="match_parent"
+        android:orientation="vertical">
+        <TextView android:id="@+id/lab_label"
+            android:layout_width="match_parent" android:layout_height="0dp" android:layout_weight="1"
+            android:gravity="center" android:text="Glass lab"
+            android:textColor="#FFFFFF" android:textSize="15sp"
+            android:shadowColor="#55000000" android:shadowRadius="6"/>
+        <LinearLayout
+            android:layout_width="match_parent" android:layout_height="44dp"
+            android:orientation="horizontal">
+            <TextView android:id="@+id/lab_prev" style="@style/LabBtn" android:text="◀"/>
+            <TextView android:id="@+id/lab_next" style="@style/LabBtn" android:text="▶"/>
+            <TextView android:id="@+id/lab_mode" style="@style/LabBtn" android:text="M"/>
+            <TextView android:id="@+id/lab_bg" style="@style/LabBtn" android:text="BG"/>
+        </LinearLayout>
+    </LinearLayout>
+</FrameLayout>

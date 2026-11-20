@@ -1,0 +1,48 @@
+<!-- v0.16 «Стеклянные часы» 4×2: время слева, день недели и дата справа, всё на живом жидком стекле. -->
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/clockw_root"
+    android:layout_width="match_parent" android:layout_height="match_parent">
+
+    <com.artemiy.glasstest.GlassBgView
+        android:id="@+id/clockw_glass"
+        android:layout_width="match_parent" android:layout_height="match_parent"
+        android:background="@drawable/glass_bg_none"
+        android:tag="auto"/>
+
+    <LinearLayout
+        android:layout_width="match_parent" android:layout_height="match_parent"
+        android:orientation="horizontal"
+        android:gravity="center_vertical"
+        android:paddingStart="22dp" android:paddingEnd="22dp">
+
+        <TextClock
+            android:layout_width="0dp" android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:format24Hour="HH:mm" android:format12Hour="h:mm"
+            android:fontFamily="sans-serif-thin"
+            android:textSize="76sp" android:textColor="#FFFFFFFF"
+            android:includeFontPadding="false"
+            android:shadowColor="#40000000" android:shadowRadius="12"/>
+
+        <LinearLayout
+            android:layout_width="wrap_content" android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:gravity="end">
+
+            <TextClock
+                android:layout_width="wrap_content" android:layout_height="wrap_content"
+                android:format24Hour="EEEE" android:format12Hour="EEEE"
+                android:fontFamily="sans-serif-medium"
+                android:textSize="17sp" android:textColor="#FFFFFFFF"
+                android:shadowColor="#40000000" android:shadowRadius="8"/>
+
+            <TextClock
+                android:layout_width="wrap_content" android:layout_height="wrap_content"
+                android:layout_marginTop="2dp"
+                android:format24Hour="d MMMM" android:format12Hour="d MMMM"
+                android:fontFamily="sans-serif"
+                android:textSize="15sp" android:textColor="#D9FFFFFF"
+                android:shadowColor="#40000000" android:shadowRadius="8"/>
+        </LinearLayout>
+    </LinearLayout>
+</FrameLayout>
